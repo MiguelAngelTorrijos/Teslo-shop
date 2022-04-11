@@ -18,7 +18,8 @@
     "next": "12.1.4",
     "react": "17.0.0",
     "react-dom": "17.0.0",
-    "react-slideshow-image": "^3.7.1"
+    "react-slideshow-image": "^3.7.1",
+    "swr": "^1.2.2"
   },
   "devDependencies": {
     "@types/node": "17.0.23",

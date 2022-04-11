@@ -12,8 +12,11 @@ export default function handler(
   switch (req.method) {
     case 'GET':
       return getProducts(req, res);
+
     default:
-      return res.status(400).json({ message: 'Bad request' });
+      return res.status(400).json({
+        message: 'Bad request',
+      });
   }
 }
 
@@ -22,14 +25,13 @@ const getProducts = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   let condition = {};
 
-  if (gender !== 'all' && SHOP_CONSTANTS.valideGenders.includes(`${gender} `)) {
+  if (gender !== 'all' && SHOP_CONSTANTS.validGenders.includes(`${gender}`)) {
     condition = { gender };
   }
 
   await db.connect();
-
   const products = await Product.find(condition)
-    .select('title image price inStock slug -_id')
+    .select('title images price inStock slug -_id')
     .lean();
 
   await db.disconnect();
