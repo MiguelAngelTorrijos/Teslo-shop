@@ -7,7 +7,7 @@ import { FullScreenLoading } from '../../components/ui/FullScreenLoading';
 import { ProductList } from '../../components/products/ProductList';
 
 const WomenPage: NextPage = () => {
-  const { products, isLoadding } = useProducts('/products?gender=women');
+  const { products, isLoading } = useProducts('/products?gender=women');
 
   return (
     <ShopLayout
@@ -21,7 +21,7 @@ const WomenPage: NextPage = () => {
         Productos para mujer
       </Typography>
 
-      {isLoadding ? <FullScreenLoading /> : <ProductList products={products} />}
+      {isLoading ? <FullScreenLoading /> : <ProductList products={products} />}
     </ShopLayout>
   );
 };

@@ -7,7 +7,7 @@ import { FullScreenLoading } from '../../components/ui/FullScreenLoading';
 import { ProductList } from '../../components/products/ProductList';
 
 const KidPage: NextPage = () => {
-  const { products, isLoadding } = useProducts('/products?gender=kid');
+  const { products, isLoading } = useProducts('/products?gender=kid');
 
   return (
     <ShopLayout
@@ -21,7 +21,7 @@ const KidPage: NextPage = () => {
         Productos para niños
       </Typography>
 
-      {isLoadding ? <FullScreenLoading /> : <ProductList products={products} />}
+      {isLoading ? <FullScreenLoading /> : <ProductList products={products} />}
     </ShopLayout>
   );
 };

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { UiContext } from '../../context/ui/UiContext';
 import {
   Box,
@@ -32,6 +32,13 @@ export const SideMenu = () => {
 
   const { isMenuOpen, toggleSideMenu } = useContext(UiContext);
 
+  const [shearchTerm, setShearchTerm] = useState('');
+
+  const onSearchTerm = () => {
+    if (shearchTerm.trim().length === 0) return;
+    navigateTo(`/search/ ${shearchTerm}`);
+  };
+
   const navigateTo = (url: string) => {
     toggleSideMenu();
     router.push(url);
@@ -48,11 +55,15 @@ export const SideMenu = () => {
         <List>
           <ListItem>
             <Input
+              autoFocus
+              value={shearchTerm}
+              onChange={(e) => setShearchTerm(e.target.value)}
+              onKeyPress={(e) => (e.key === 'Enter' ? onSearchTerm() : null)}
               type='text'
               placeholder='Buscar...'
               endAdornment={
                 <InputAdornment position='end'>
-                  <IconButton aria-label='toggle password visibility'>
+                  <IconButton onClick={onSearchTerm}>
                     <SearchOutlined />
                   </IconButton>
                 </InputAdornment>
